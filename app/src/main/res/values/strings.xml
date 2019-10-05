@@ -13,4 +13,9 @@
     <string name="no_internet">No Internet Connection</string>
     <string name="enable_data">Enable Data</string>
     <string name="deplacements">Deplacements</string>
+    <string name="close">Close</string>
+    <string name="trips">Trips</string>
+    <string name="life_skills">Life-skills</string>
+    <string name="hobbies">Hobbies</string>
+    <string name="contributions">Contributions</string>
 </resources>

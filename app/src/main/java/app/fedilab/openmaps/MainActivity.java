@@ -5,7 +5,6 @@ import android.annotation.TargetApi;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -20,13 +19,14 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private PowerMenu powerMenu;
+    private PowerMenu powerSubMenu;
     private WebView main_webview;
     final private int REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS = 124;
     public static String TAG = "OpenMapsTAG";
@@ -61,38 +62,26 @@ public class MainActivity extends AppCompatActivity {
         main_webview.setWebViewClient(new OpenMapsWebViewClient(MainActivity.this));
         main_webview.loadUrl(Helper.fuel_map);
 
+
+
+
         List<PowerMenuItem> distances = new ArrayList<>();
-        distances.add(new PowerMenuItem("Itinerary", false));
-        distances.add(new PowerMenuItem("Cycle paths", false));
-        distances.add(new PowerMenuItem("Topographic", false));
-        distances.add(new PowerMenuItem("Free parkings", false));
-        distances.add(new PowerMenuItem("Fuel", true));
+        distances.add(new PowerMenuItem(getString(R.string.trips), false));
+        distances.add(new PowerMenuItem(getString(R.string.life_skills), false));
+        distances.add(new PowerMenuItem(getString(R.string.hobbies), false));
+        distances.add(new PowerMenuItem(getString(R.string.contributions), true));
         powerMenu = new PowerMenu.Builder(MainActivity.this)
                 .addItemList(distances)
-                .setDivider(new ColorDrawable(ContextCompat.getColor(getApplicationContext(), R.color.colorAccent)))
-                .addItem(new PowerMenuItem("Vegetarian restaurants", false))
-                .addItem(new PowerMenuItem("Wheelchair Accessible Places", false))
-                .addItem(new PowerMenuItem("Beer", false))
-                .addItem(new PowerMenuItem("Solar panels", false))
-                .addItem(new PowerMenuItem("Weather", false))
-                .addItem(new PowerMenuItem("Breton", false))
-                .addItem(new PowerMenuItem("Occitan et Basque", false))
-                .addItem(new PowerMenuItem("Beer", false))
-                .addItem(new PowerMenuItem("Basic card", false))
-                .addItem(new PowerMenuItem("Thematic card", false))
-                .addItem(new PowerMenuItem("Billboard advertises ", false))
-                .addItem(new PowerMenuItem("Interior of buildings", false))
-                .addItem(new PowerMenuItem("Then And Now", false))
                 .setAnimation(MenuAnimation.SHOWUP_TOP_LEFT)
                 .setMenuRadius(10f) // sets the corner radius.
                 .setMenuShadow(10f) // sets the shadow.
-                .setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.colorAccent))
+                .setTextColor(ContextCompat.getColor(MainActivity.this, R.color.colorAccent))
                 .setTextGravity(Gravity.LEFT)
                 .setShowBackground(false)
             //    .setHeight(1500)
                 .setSelectedTextColor(Color.WHITE)
                 .setMenuColor(Color.WHITE)
-                .setSelectedMenuColor(ContextCompat.getColor(getApplicationContext(), R.color.colorPrimary))
+                .setSelectedMenuColor(ContextCompat.getColor(MainActivity.this, R.color.colorPrimary))
                 .setOnMenuItemClickListener(onMenuItemClickListener)
                 .build();
 
@@ -106,8 +95,8 @@ public class MainActivity extends AppCompatActivity {
         int width = metrics.widthPixels;
         final FloatingActionButton maps = findViewById(R.id.maps);
         maps.setOnClickListener(view -> {
-           // powerMenu.showAtLocation(maps,width,(int)Helper.convertDpToPixel(metrics.widthPixels -40, getApplicationContext()));
-            powerMenu.showAsDropDown(maps,0,-height);
+           // powerMenu.showAtLocation(maps,width,(int)Helper.convertDpToPixel(metrics.widthPixels -40, MainActivity.this));
+            powerMenu.showAsDropDown(maps,0,-700);
         });
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -121,80 +110,197 @@ public class MainActivity extends AppCompatActivity {
             powerMenu.setSelectedPosition(position);
             switch (position){
                 case 0:
-                    main_webview.stopLoading();
-                    main_webview.loadUrl(Helper.direction_map);
+                    List<PowerMenuItem> distances = new ArrayList<>();
+                    distances.add(new PowerMenuItem("Itinerary", false));
+                    distances.add(new PowerMenuItem("Cycle paths", false));
+                    distances.add(new PowerMenuItem("Topographic", false));
+                    distances.add(new PowerMenuItem("Free parkings", false));
+                    distances.add(new PowerMenuItem("Fuel", false));
+                    powerSubMenu = new PowerMenu.Builder(MainActivity.this)
+                        .setHeaderView(R.layout.layout_dialog_header_trips)
+                        .setFooterView(R.layout.layout_dialog_footer)
+                        .addItemList(distances)
+                        .setAnimation(MenuAnimation.SHOW_UP_CENTER)
+                        .setWidth(700)
+                        .setTextSize(15)
+                        .setMenuRadius(10f)
+                        .setMenuShadow(10f)
+                        .setSelectedEffect(false)
+                        .setOnMenuItemClickListener(new OnMenuItemClickListener<PowerMenuItem>(){
+                            @Override
+                            public void onItemClick(int position, PowerMenuItem item) {
+                                switch (position) {
+                                    case 0:
+                                        main_webview.stopLoading();
+                                        main_webview.loadUrl(Helper.direction_map);
+                                        break;
+                                    case 1:
+                                        main_webview.stopLoading();
+                                        main_webview.loadUrl(Helper.cyclo_map);
+                                        break;
+                                    case 2:
+                                        main_webview.stopLoading();
+                                        main_webview.loadUrl(Helper.topo_map);
+                                        break;
+                                    case 3:
+                                        main_webview.stopLoading();
+                                        main_webview.loadUrl(Helper.park_map);
+                                        break;
+                                    case 4:
+                                        main_webview.stopLoading();
+                                        main_webview.loadUrl(Helper.fuel_map);
+                                        break;
+                                }
+                                powerSubMenu.dismiss();
+                                powerMenu.dismiss();
+                            }
+                        })
+                        .build();
+                    powerSubMenu.showAtCenter(main_webview);
                     break;
                 case 1:
-                    main_webview.stopLoading();
-                    main_webview.loadUrl(Helper.cyclo_map);
+                    List<PowerMenuItem> lifeskills = new ArrayList<>();
+
+                    lifeskills.add(new PowerMenuItem("Vegetarian restaurants", false));
+                    lifeskills.add(new PowerMenuItem("Wheelchair Accessible Places", false));
+                    lifeskills.add(new PowerMenuItem("Beer", false));
+                    lifeskills.add(new PowerMenuItem("Solar panels", false));
+                    lifeskills.add(new PowerMenuItem("Weather", false));
+
+                    powerSubMenu = new PowerMenu.Builder(MainActivity.this)
+                            .setHeaderView(R.layout.layout_dialog_header_life_skills)
+                            .setFooterView(R.layout.layout_dialog_footer)
+                            .addItemList(lifeskills)
+                            .setAnimation(MenuAnimation.SHOW_UP_CENTER)
+                            .setWidth(700)
+                            .setTextSize(15)
+                            .setMenuRadius(10f)
+                            .setMenuShadow(10f)
+                            .setSelectedEffect(false)
+                            .setOnMenuItemClickListener(new OnMenuItemClickListener<PowerMenuItem>(){
+                                @Override
+                                public void onItemClick(int position, PowerMenuItem item) {
+                                    switch (position) {
+                                        case 0:
+                                            main_webview.stopLoading();
+                                            main_webview.loadUrl(Helper.resto_map);
+                                            break;
+                                        case 1:
+                                            main_webview.stopLoading();
+                                            main_webview.loadUrl(Helper.wheel_map);
+                                            break;
+                                        case 2:
+                                            main_webview.stopLoading();
+                                            main_webview.loadUrl(Helper.beer_map);
+                                            break;
+                                        case 3:
+                                            main_webview.stopLoading();
+                                            main_webview.loadUrl(Helper.solar_map);
+                                            break;
+                                        case 4:
+                                            main_webview.stopLoading();
+                                            main_webview.loadUrl(Helper.weather_map);
+                                            break;
+                                    }
+                                    powerSubMenu.dismiss();
+                                    powerMenu.dismiss();
+                                }
+                            })
+                            .build();
+                    powerSubMenu.showAtCenter(main_webview);
                     break;
                 case 2:
-                    main_webview.stopLoading();
-                    main_webview.loadUrl(Helper.topo_map);
+                    List<PowerMenuItem> hobbies = new ArrayList<>();
+                    hobbies.add(new PowerMenuItem("Breton", false));
+                    hobbies.add(new PowerMenuItem("Occitan et Basque", false));
+                    powerSubMenu = new PowerMenu.Builder(MainActivity.this)
+                            .setHeaderView(R.layout.layout_dialog_header_life_skills)
+                            .setFooterView(R.layout.layout_dialog_footer)
+                            .addItemList(hobbies)
+                            .setAnimation(MenuAnimation.SHOW_UP_CENTER)
+                            .setWidth(700)
+                            .setTextSize(15)
+                            .setMenuRadius(10f)
+                            .setMenuShadow(10f)
+                            .setSelectedEffect(false)
+                            .setOnMenuItemClickListener(new OnMenuItemClickListener<PowerMenuItem>(){
+                                @Override
+                                public void onItemClick(int position, PowerMenuItem item) {
+                                    switch (position) {
+                                        case 0:
+                                            main_webview.stopLoading();
+                                            main_webview.loadUrl(Helper.breton_map);
+                                            break;
+                                        case 1:
+                                            main_webview.stopLoading();
+                                            main_webview.loadUrl(Helper.occ_map);
+                                            break;
+                                    }
+                                    powerSubMenu.dismiss();
+                                    powerMenu.dismiss();
+                                }
+                            })
+                            .build();
+                    powerSubMenu.showAtCenter(main_webview);
                     break;
                 case 3:
-                    main_webview.stopLoading();
-                    main_webview.loadUrl(Helper.park_map);
-                    break;
-                case 4:
-                    main_webview.stopLoading();
-                    main_webview.loadUrl(Helper.fuel_map);
-                    break;
-                case 5:
-                    main_webview.stopLoading();
-                    main_webview.loadUrl(Helper.resto_map);
-                    break;
-                case 6:
-                    main_webview.stopLoading();
-                    main_webview.loadUrl(Helper.wheel_map);
-                    break;
-                case 7:
-                    main_webview.stopLoading();
-                    main_webview.loadUrl(Helper.beer_map);
-                    break;
-                case 8:
-                    main_webview.stopLoading();
-                    main_webview.loadUrl(Helper.solar_map);
-                    break;
-                case 9:
-                    main_webview.stopLoading();
-                    main_webview.loadUrl(Helper.weather_map);
-                    break;
+                    List<PowerMenuItem> contributions = new ArrayList<>();
+                    contributions.add(new PowerMenuItem("Basic card", true));
+                    contributions.add(new PowerMenuItem("Thematic card", false));
+                    contributions.add(new PowerMenuItem("Billboard advertises ", false));
+                    contributions.add(new PowerMenuItem("Interior of buildings", false));
+                    contributions.add(new PowerMenuItem("Then And Now", false));
 
-
-                case 10:
-                    main_webview.stopLoading();
-                    main_webview.loadUrl(Helper.breton_map);
-                    break;
-                case 11:
-                    main_webview.stopLoading();
-                    main_webview.loadUrl(Helper.occ_map);
-                    break;
-
-
-                case 12:
-                    main_webview.stopLoading();
-                    main_webview.loadUrl(Helper.base_contrib_map);
-                    break;
-                case 13:
-                    main_webview.stopLoading();
-                    main_webview.loadUrl(Helper.theme_contrib_map);
-                    break;
-                case 14:
-                    main_webview.stopLoading();
-                    main_webview.loadUrl(Helper.ads_warning_contrib_map);
-                    break;
-                case 15:
-                    main_webview.stopLoading();
-                    main_webview.loadUrl(Helper.building_contrib_map);
-                    break;
-                case 16:
-                    main_webview.stopLoading();
-                    main_webview.loadUrl(Helper.them_an_now_contrib_map);
+                    powerSubMenu = new PowerMenu.Builder(MainActivity.this)
+                            .setHeaderView(R.layout.layout_dialog_header_life_skills)
+                            .setFooterView(R.layout.layout_dialog_footer)
+                            .addItemList(contributions)
+                            .setAnimation(MenuAnimation.SHOW_UP_CENTER)
+                            .setWidth(700)
+                            .setTextSize(15)
+                            .setMenuRadius(10f)
+                            .setMenuShadow(10f)
+                            .setSelectedEffect(false)
+                            .setOnMenuItemClickListener(new OnMenuItemClickListener<PowerMenuItem>(){
+                                @Override
+                                public void onItemClick(int position, PowerMenuItem item) {
+                                    switch (position) {
+                                        case 0:
+                                            main_webview.stopLoading();
+                                            main_webview.loadUrl(Helper.base_contrib_map);
+                                            break;
+                                        case 1:
+                                            main_webview.stopLoading();
+                                            main_webview.loadUrl(Helper.theme_contrib_map);
+                                            break;
+                                        case 2:
+                                            main_webview.stopLoading();
+                                            main_webview.loadUrl(Helper.ads_warning_contrib_map);
+                                            break;
+                                        case 3:
+                                            main_webview.stopLoading();
+                                            main_webview.loadUrl(Helper.building_contrib_map);
+                                            break;
+                                        case 4:
+                                            main_webview.stopLoading();
+                                            main_webview.loadUrl(Helper.them_an_now_contrib_map);
+                                            break;
+                                    }
+                                    powerSubMenu.dismiss();
+                                    powerMenu.dismiss();
+                                }
+                            })
+                            .build();
+                    powerSubMenu.showAtCenter(main_webview);
                     break;
 
             }
-            powerMenu.dismiss();
+            View footerView = powerSubMenu.getFooterView();
+            TextView close = footerView.findViewById(R.id.close_dialog);
+            close.setOnClickListener(view -> {
+                powerSubMenu.dismiss();
+            });
+
         }
     };
 
