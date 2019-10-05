@@ -2,7 +2,7 @@
 
 A simple client to display maps from Open Street Maps
 
-[Download the apk - v1.0.2](https://framadrive.org/s/kpnJng2am5tK4Yi)
+[Download the apk - v1.0.3](https://framadrive.org/s/kpnJng2am5tK4Yi)
 
 <img src="./img/img1.png" width="250">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <img src="./img/img2.png" width="250">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
