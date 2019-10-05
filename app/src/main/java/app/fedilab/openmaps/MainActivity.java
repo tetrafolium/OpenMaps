@@ -19,7 +19,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -69,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
         List<PowerMenuItem> distances = new ArrayList<>();
         distances.add(new PowerMenuItem(getString(R.string.trips), false));
         distances.add(new PowerMenuItem(getString(R.string.life_skills), false));
+        distances.add(new PowerMenuItem(getString(R.string.hobbies), false));
         distances.add(new PowerMenuItem(getString(R.string.regional_maps), false));
         distances.add(new PowerMenuItem(getString(R.string.contributions), true));
         powerMenu = new PowerMenu.Builder(MainActivity.this)
@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
         final FloatingActionButton maps = findViewById(R.id.maps);
         maps.setOnClickListener(view -> {
            // powerMenu.showAtLocation(maps,width,(int)Helper.convertDpToPixel(metrics.widthPixels -40, MainActivity.this));
-            powerMenu.showAsDropDown(maps,0,-700);
+            powerMenu.showAsDropDown(maps,0,-750);
         });
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -212,12 +212,49 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case 2:
                     List<PowerMenuItem> hobbies = new ArrayList<>();
-                    hobbies.add(new PowerMenuItem(getString(R.string.breton), false));
-                    hobbies.add(new PowerMenuItem(getString(R.string.occ_basq), false));
+                    hobbies.add(new PowerMenuItem(getString(R.string.ski_snow), false));
+                    hobbies.add(new PowerMenuItem(getString(R.string.historic_places), false));
                     powerSubMenu = new PowerMenu.Builder(MainActivity.this)
                             .setHeaderView(R.layout.layout_dialog_header_regional_maps)
                             .setFooterView(R.layout.layout_dialog_footer)
                             .addItemList(hobbies)
+                            .setAnimation(MenuAnimation.SHOW_UP_CENTER)
+                            .setWidth(700)
+                            .setTextSize(15)
+                            .setMenuRadius(10f)
+                            .setMenuShadow(10f)
+                            .setSelectedEffect(false)
+                            .setOnMenuItemClickListener(new OnMenuItemClickListener<PowerMenuItem>(){
+                                @Override
+                                public void onItemClick(int position, PowerMenuItem item) {
+                                    String url = null;
+                                    switch (position) {
+                                        case 1:
+                                            url = Helper.snow_map;
+                                            break;
+                                        case 2:
+                                            url = Helper.historic_map;
+                                            break;
+                                    }
+                                    if( url != null){
+                                        main_webview.stopLoading();
+                                        main_webview.loadUrl(url);
+                                    }
+                                    powerSubMenu.dismiss();
+                                    powerMenu.dismiss();
+                                }
+                            })
+                            .build();
+                    powerSubMenu.showAtCenter(main_webview);
+                    break;
+                case 3:
+                    List<PowerMenuItem> regionals = new ArrayList<>();
+                    regionals.add(new PowerMenuItem(getString(R.string.breton), false));
+                    regionals.add(new PowerMenuItem(getString(R.string.occ_basq), false));
+                    powerSubMenu = new PowerMenu.Builder(MainActivity.this)
+                            .setHeaderView(R.layout.layout_dialog_header_regional_maps)
+                            .setFooterView(R.layout.layout_dialog_footer)
+                            .addItemList(regionals)
                             .setAnimation(MenuAnimation.SHOW_UP_CENTER)
                             .setWidth(700)
                             .setTextSize(15)
@@ -247,7 +284,7 @@ public class MainActivity extends AppCompatActivity {
                             .build();
                     powerSubMenu.showAtCenter(main_webview);
                     break;
-                case 3:
+                case 4:
                     List<PowerMenuItem> contributions = new ArrayList<>();
                     contributions.add(new PowerMenuItem(getString(R.string.basic_map), true));
                     contributions.add(new PowerMenuItem(getString(R.string.thematic_maps), false));

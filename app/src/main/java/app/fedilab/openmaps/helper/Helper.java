@@ -28,6 +28,10 @@ public class Helper {
     public static String weather_map = "https://openweathermap.org";
 
     // - Hobbies
+    public static String snow_map = "http://opensnowmap.org/";
+    public static String historic_map = "https://histosm.org/";
+
+    // - Regional
     public static String breton_map = "https://kartenn.openstreetmap.bzh";
     public static String occ_map = "https://tile.openstreetmap.fr";
 

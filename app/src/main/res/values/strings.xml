@@ -5,6 +5,7 @@
     <string name="cancel">Cancel</string>
     <string name="access_needed">App need access to %1$s</string>
     <string name="show_location">Show Location</string>
+    <string name="hobbies">Hobbies</string>
     <string name="permission_denied">The permission has been denied!</string>
     <string name="all_granted">All needed permissions are granted!</string>
     <string name="loading_wait">Loading Please Wait</string>
@@ -35,4 +36,7 @@
     <string name="billboard_advertises">Billboard advertises</string>
     <string name="interior_buildings">Interior of buildings</string>
     <string name="then_and_now">Then And Now</string>
+    <string name="snow">Snow</string>
+    <string name="ski_snow">Ski slope</string>
+    <string name="historic_places">Historic Places</string>
 </resources>
