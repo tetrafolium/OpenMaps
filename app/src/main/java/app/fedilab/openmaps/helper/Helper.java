@@ -28,7 +28,7 @@ public class Helper {
     public static String weather_map = "https://openweathermap.org";
 
     // - Hobbies
-    public static String snow_map = "http://opensnowmap.org/";
+    public static String snow_map = "https://opensnowmap.org/";
     public static String historic_map = "https://histosm.org/";
 
     // - Regional
