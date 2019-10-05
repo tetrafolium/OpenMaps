@@ -19,6 +19,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -60,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         OpenMapsWebChromeClient openMapsWebChromeClient = new OpenMapsWebChromeClient(MainActivity.this, main_webview, webview_container, videoLayout);
         main_webview.setWebChromeClient(openMapsWebChromeClient);
         main_webview.setWebViewClient(new OpenMapsWebViewClient(MainActivity.this));
-        main_webview.loadUrl(Helper.fuel_map);
+        main_webview.loadUrl(Helper.base_contrib_map);
 
 
 
@@ -129,27 +130,27 @@ public class MainActivity extends AppCompatActivity {
                         .setOnMenuItemClickListener(new OnMenuItemClickListener<PowerMenuItem>(){
                             @Override
                             public void onItemClick(int position, PowerMenuItem item) {
+                                String url = null;
                                 switch (position) {
-                                    case 0:
-                                        main_webview.stopLoading();
-                                        main_webview.loadUrl(Helper.direction_map);
-                                        break;
                                     case 1:
-                                        main_webview.stopLoading();
-                                        main_webview.loadUrl(Helper.cyclo_map);
+                                        url = Helper.direction_map;
                                         break;
                                     case 2:
-                                        main_webview.stopLoading();
-                                        main_webview.loadUrl(Helper.topo_map);
+                                        url = Helper.cyclo_map;
                                         break;
                                     case 3:
-                                        main_webview.stopLoading();
-                                        main_webview.loadUrl(Helper.park_map);
+                                        url = Helper.topo_map;
                                         break;
                                     case 4:
-                                        main_webview.stopLoading();
-                                        main_webview.loadUrl(Helper.fuel_map);
+                                        url = Helper.park_map;
                                         break;
+                                    case 5:
+                                        url = Helper.fuel_map;
+                                        break;
+                                }
+                                if( url != null){
+                                    main_webview.stopLoading();
+                                    main_webview.loadUrl(url);
                                 }
                                 powerSubMenu.dismiss();
                                 powerMenu.dismiss();
@@ -180,27 +181,27 @@ public class MainActivity extends AppCompatActivity {
                             .setOnMenuItemClickListener(new OnMenuItemClickListener<PowerMenuItem>(){
                                 @Override
                                 public void onItemClick(int position, PowerMenuItem item) {
+                                    String url = null;
                                     switch (position) {
-                                        case 0:
-                                            main_webview.stopLoading();
-                                            main_webview.loadUrl(Helper.resto_map);
-                                            break;
                                         case 1:
-                                            main_webview.stopLoading();
-                                            main_webview.loadUrl(Helper.wheel_map);
+                                            url = Helper.resto_map;
                                             break;
                                         case 2:
-                                            main_webview.stopLoading();
-                                            main_webview.loadUrl(Helper.beer_map);
+                                            url = Helper.wheel_map;
                                             break;
                                         case 3:
-                                            main_webview.stopLoading();
-                                            main_webview.loadUrl(Helper.solar_map);
+                                            url = Helper.beer_map;
                                             break;
                                         case 4:
-                                            main_webview.stopLoading();
-                                            main_webview.loadUrl(Helper.weather_map);
+                                            url = Helper.solar_map;
                                             break;
+                                        case 5:
+                                            url = Helper.weather_map;
+                                            break;
+                                    }
+                                    if( url != null){
+                                        main_webview.stopLoading();
+                                        main_webview.loadUrl(url);
                                     }
                                     powerSubMenu.dismiss();
                                     powerMenu.dismiss();
@@ -226,15 +227,18 @@ public class MainActivity extends AppCompatActivity {
                             .setOnMenuItemClickListener(new OnMenuItemClickListener<PowerMenuItem>(){
                                 @Override
                                 public void onItemClick(int position, PowerMenuItem item) {
+                                    String url = null;
                                     switch (position) {
-                                        case 0:
-                                            main_webview.stopLoading();
-                                            main_webview.loadUrl(Helper.breton_map);
-                                            break;
                                         case 1:
-                                            main_webview.stopLoading();
-                                            main_webview.loadUrl(Helper.occ_map);
+                                            url = Helper.breton_map;
                                             break;
+                                        case 2:
+                                            url = Helper.occ_map;
+                                            break;
+                                    }
+                                    if( url != null){
+                                        main_webview.stopLoading();
+                                        main_webview.loadUrl(url);
                                     }
                                     powerSubMenu.dismiss();
                                     powerMenu.dismiss();
@@ -264,27 +268,28 @@ public class MainActivity extends AppCompatActivity {
                             .setOnMenuItemClickListener(new OnMenuItemClickListener<PowerMenuItem>(){
                                 @Override
                                 public void onItemClick(int position, PowerMenuItem item) {
+                                    String url = null;
                                     switch (position) {
-                                        case 0:
-                                            main_webview.stopLoading();
-                                            main_webview.loadUrl(Helper.base_contrib_map);
-                                            break;
                                         case 1:
-                                            main_webview.stopLoading();
-                                            main_webview.loadUrl(Helper.theme_contrib_map);
+                                            url = Helper.base_contrib_map;
                                             break;
                                         case 2:
-                                            main_webview.stopLoading();
-                                            main_webview.loadUrl(Helper.ads_warning_contrib_map);
+                                            url = Helper.theme_contrib_map;
                                             break;
                                         case 3:
-                                            main_webview.stopLoading();
-                                            main_webview.loadUrl(Helper.building_contrib_map);
+                                            url = Helper.ads_warning_contrib_map;
                                             break;
                                         case 4:
-                                            main_webview.stopLoading();
-                                            main_webview.loadUrl(Helper.them_an_now_contrib_map);
+                                            url = Helper.building_contrib_map;
                                             break;
+                                        case 5:
+                                            url = Helper.them_an_now_contrib_map;
+                                            break;
+                                    }
+
+                                    if( url != null){
+                                        main_webview.stopLoading();
+                                        main_webview.loadUrl(url);
                                     }
                                     powerSubMenu.dismiss();
                                     powerMenu.dismiss();
