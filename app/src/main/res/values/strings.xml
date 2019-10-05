@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">OpenMaps</string>
+    <string name="app_name" translatable="false">OpenMaps</string>
     <string name="action_settings">Settings</string>
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
@@ -16,6 +16,23 @@
     <string name="close">Close</string>
     <string name="trips">Trips</string>
     <string name="life_skills">Life-skills</string>
-    <string name="hobbies">Hobbies</string>
+    <string name="regional_maps">Regional maps</string>
     <string name="contributions">Contributions</string>
+    <string name="itinerary">Itinerary</string>
+    <string name="cycle_paths">Cycle paths</string>
+    <string name="topographic">Topographic</string>
+    <string name="free_parkings">Free parkings</string>
+    <string name="fuel">Fuel</string>
+    <string name="vegetarian_restaurants">Vegetarian restaurants</string>
+    <string name="accessible_places">Wheelchair Accessible Places</string>
+    <string name="beer">Beer</string>
+    <string name="solar_panel">Solar panels</string>
+    <string name="weather">Weather</string>
+    <string name="breton">Breton</string>
+    <string name="occ_basq">Occitan et Basque</string>
+    <string name="basic_map">Basic map</string>
+    <string name="thematic_maps">Thematic maps</string>
+    <string name="billboard_advertises">Billboard advertises</string>
+    <string name="interior_buildings">Interior of buildings</string>
+    <string name="then_and_now">Then And Now</string>
 </resources>

@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         List<PowerMenuItem> distances = new ArrayList<>();
         distances.add(new PowerMenuItem(getString(R.string.trips), false));
         distances.add(new PowerMenuItem(getString(R.string.life_skills), false));
-        distances.add(new PowerMenuItem(getString(R.string.hobbies), false));
+        distances.add(new PowerMenuItem(getString(R.string.regional_maps), false));
         distances.add(new PowerMenuItem(getString(R.string.contributions), true));
         powerMenu = new PowerMenu.Builder(MainActivity.this)
                 .addItemList(distances)
@@ -112,11 +112,11 @@ public class MainActivity extends AppCompatActivity {
             switch (position){
                 case 0:
                     List<PowerMenuItem> distances = new ArrayList<>();
-                    distances.add(new PowerMenuItem("Itinerary", false));
-                    distances.add(new PowerMenuItem("Cycle paths", false));
-                    distances.add(new PowerMenuItem("Topographic", false));
-                    distances.add(new PowerMenuItem("Free parkings", false));
-                    distances.add(new PowerMenuItem("Fuel", false));
+                    distances.add(new PowerMenuItem(getString(R.string.itinerary), false));
+                    distances.add(new PowerMenuItem(getString(R.string.cycle_paths), false));
+                    distances.add(new PowerMenuItem(getString(R.string.topographic), false));
+                    distances.add(new PowerMenuItem(getString(R.string.free_parkings), false));
+                    distances.add(new PowerMenuItem(getString(R.string.fuel), false));
                     powerSubMenu = new PowerMenu.Builder(MainActivity.this)
                         .setHeaderView(R.layout.layout_dialog_header_trips)
                         .setFooterView(R.layout.layout_dialog_footer)
@@ -162,11 +162,11 @@ public class MainActivity extends AppCompatActivity {
                 case 1:
                     List<PowerMenuItem> lifeskills = new ArrayList<>();
 
-                    lifeskills.add(new PowerMenuItem("Vegetarian restaurants", false));
-                    lifeskills.add(new PowerMenuItem("Wheelchair Accessible Places", false));
-                    lifeskills.add(new PowerMenuItem("Beer", false));
-                    lifeskills.add(new PowerMenuItem("Solar panels", false));
-                    lifeskills.add(new PowerMenuItem("Weather", false));
+                    lifeskills.add(new PowerMenuItem(getString(R.string.vegetarian_restaurants), false));
+                    lifeskills.add(new PowerMenuItem(getString(R.string.accessible_places), false));
+                    lifeskills.add(new PowerMenuItem(getString(R.string.beer), false));
+                    lifeskills.add(new PowerMenuItem(getString(R.string.solar_panel), false));
+                    lifeskills.add(new PowerMenuItem(getString(R.string.weather), false));
 
                     powerSubMenu = new PowerMenu.Builder(MainActivity.this)
                             .setHeaderView(R.layout.layout_dialog_header_life_skills)
@@ -212,10 +212,10 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case 2:
                     List<PowerMenuItem> hobbies = new ArrayList<>();
-                    hobbies.add(new PowerMenuItem("Breton", false));
-                    hobbies.add(new PowerMenuItem("Occitan et Basque", false));
+                    hobbies.add(new PowerMenuItem(getString(R.string.breton), false));
+                    hobbies.add(new PowerMenuItem(getString(R.string.occ_basq), false));
                     powerSubMenu = new PowerMenu.Builder(MainActivity.this)
-                            .setHeaderView(R.layout.layout_dialog_header_life_skills)
+                            .setHeaderView(R.layout.layout_dialog_header_regional_maps)
                             .setFooterView(R.layout.layout_dialog_footer)
                             .addItemList(hobbies)
                             .setAnimation(MenuAnimation.SHOW_UP_CENTER)
@@ -249,11 +249,11 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case 3:
                     List<PowerMenuItem> contributions = new ArrayList<>();
-                    contributions.add(new PowerMenuItem("Basic card", true));
-                    contributions.add(new PowerMenuItem("Thematic card", false));
-                    contributions.add(new PowerMenuItem("Billboard advertises ", false));
-                    contributions.add(new PowerMenuItem("Interior of buildings", false));
-                    contributions.add(new PowerMenuItem("Then And Now", false));
+                    contributions.add(new PowerMenuItem(getString(R.string.basic_map), true));
+                    contributions.add(new PowerMenuItem(getString(R.string.thematic_maps), false));
+                    contributions.add(new PowerMenuItem(getString(R.string.billboard_advertises), false));
+                    contributions.add(new PowerMenuItem(getString(R.string.interior_buildings), false));
+                    contributions.add(new PowerMenuItem(getString(R.string.then_and_now), false));
 
                     powerSubMenu = new PowerMenu.Builder(MainActivity.this)
                             .setHeaderView(R.layout.layout_dialog_header_life_skills)
@@ -387,6 +387,36 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (main_webview != null)
+            main_webview.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (main_webview != null)
+            main_webview.onResume();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (main_webview.canGoBack()) {
+            main_webview.goBack();
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (main_webview != null)
+            main_webview.destroy();
+    }
 
     private void showMessageOKCancel(String message, DialogInterface.OnClickListener okListener) {
         new AlertDialog.Builder(MainActivity.this)

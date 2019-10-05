@@ -10,7 +10,7 @@
         android:layout_weight="1"
         android:gravity="center"
         android:padding="10dp"
-        android:text="@string/hobbies"
+        android:text="@string/regional_maps"
         android:textColor="@color/colorAccent"
         android:textSize="18sp"
         android:textStyle="bold" />
