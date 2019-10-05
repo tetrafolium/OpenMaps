@@ -24,6 +24,7 @@ public class Helper {
     public static String resto_map = "https://openvegemap.netlib.re";
     public static String wheel_map = "https://wheelmap.org";
     public static String beer_map = "https://openbeermap.github.io";
+    public static String solar_map = "https://opensolarmap.org/";
     public static String weather_map = "https://openweathermap.org";
 
     // - Hobbies

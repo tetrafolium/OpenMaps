@@ -63,7 +63,6 @@ public class OpenMapsWebViewClient extends WebViewClient {
                         }
                     });
 
-        loadingDialog.setCancelable(false);
     }
 
 
@@ -156,12 +155,9 @@ public class OpenMapsWebViewClient extends WebViewClient {
     @Override
     public void onPageFinished(WebView view, String url) {
 
-        if (webViewPreviousState == PAGE_STARTED) {
-
-            if (null != loadingDialog) {
-                loadingDialog.dismiss();
-                loadingDialog = null;
-            }
+        if (null != loadingDialog) {
+            loadingDialog.dismiss();
+            loadingDialog = null;
         }
     }
 }

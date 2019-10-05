@@ -20,6 +20,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -43,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     private PowerMenu powerMenu;
     private WebView main_webview;
     final private int REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS = 124;
-
+    public static String TAG = "OpenMapsTAG";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,27 +61,23 @@ public class MainActivity extends AppCompatActivity {
         main_webview.setWebViewClient(new OpenMapsWebViewClient(MainActivity.this));
         main_webview.loadUrl(Helper.fuel_map);
 
-
+        List<PowerMenuItem> distances = new ArrayList<>();
+        distances.add(new PowerMenuItem("Itinerary", false));
+        distances.add(new PowerMenuItem("Cycle paths", false));
+        distances.add(new PowerMenuItem("Topographic", false));
+        distances.add(new PowerMenuItem("Free parkings", false));
+        distances.add(new PowerMenuItem("Fuel", true));
         powerMenu = new PowerMenu.Builder(MainActivity.this)
-                .addItem(new PowerMenuItem("Itinerary", false))
-                .addItem(new PowerMenuItem("Cycle paths", false))
-                .addItem(new PowerMenuItem("Topographic", false))
-                .addItem(new PowerMenuItem("Free parkings", false))
-                .addItem(new PowerMenuItem("Fuel", true))
+                .addItemList(distances)
                 .setDivider(new ColorDrawable(ContextCompat.getColor(getApplicationContext(), R.color.colorAccent)))
-                .setDividerHeight(1)
                 .addItem(new PowerMenuItem("Vegetarian restaurants", false))
                 .addItem(new PowerMenuItem("Wheelchair Accessible Places", false))
                 .addItem(new PowerMenuItem("Beer", false))
                 .addItem(new PowerMenuItem("Solar panels", false))
                 .addItem(new PowerMenuItem("Weather", false))
-                .setDivider(new ColorDrawable(ContextCompat.getColor(getApplicationContext(), R.color.colorAccent)))
-                .setDividerHeight(1)
                 .addItem(new PowerMenuItem("Breton", false))
                 .addItem(new PowerMenuItem("Occitan et Basque", false))
                 .addItem(new PowerMenuItem("Beer", false))
-                .setDivider(new ColorDrawable(ContextCompat.getColor(getApplicationContext(), R.color.colorAccent)))
-                .setDividerHeight(1)
                 .addItem(new PowerMenuItem("Basic card", false))
                 .addItem(new PowerMenuItem("Thematic card", false))
                 .addItem(new PowerMenuItem("Billboard advertises ", false))
@@ -90,9 +87,9 @@ public class MainActivity extends AppCompatActivity {
                 .setMenuRadius(10f) // sets the corner radius.
                 .setMenuShadow(10f) // sets the shadow.
                 .setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.colorAccent))
-                .setTextGravity(Gravity.CENTER)
+                .setTextGravity(Gravity.LEFT)
                 .setShowBackground(false)
-                .setHeight(1500)
+            //    .setHeight(1500)
                 .setSelectedTextColor(Color.WHITE)
                 .setMenuColor(Color.WHITE)
                 .setSelectedMenuColor(ContextCompat.getColor(getApplicationContext(), R.color.colorPrimary))
@@ -109,7 +106,8 @@ public class MainActivity extends AppCompatActivity {
         int width = metrics.widthPixels;
         final FloatingActionButton maps = findViewById(R.id.maps);
         maps.setOnClickListener(view -> {
-            powerMenu.showAtLocation(maps,width,(int)Helper.convertDpToPixel(metrics.widthPixels -40, getApplicationContext()));
+           // powerMenu.showAtLocation(maps,width,(int)Helper.convertDpToPixel(metrics.widthPixels -40, getApplicationContext()));
+            powerMenu.showAsDropDown(maps,0,-height);
         });
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -142,8 +140,6 @@ public class MainActivity extends AppCompatActivity {
                     main_webview.stopLoading();
                     main_webview.loadUrl(Helper.fuel_map);
                     break;
-
-
                 case 5:
                     main_webview.stopLoading();
                     main_webview.loadUrl(Helper.resto_map);
@@ -158,37 +154,41 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case 8:
                     main_webview.stopLoading();
+                    main_webview.loadUrl(Helper.solar_map);
+                    break;
+                case 9:
+                    main_webview.stopLoading();
                     main_webview.loadUrl(Helper.weather_map);
                     break;
 
 
-                case 9:
+                case 10:
                     main_webview.stopLoading();
                     main_webview.loadUrl(Helper.breton_map);
                     break;
-                case 10:
+                case 11:
                     main_webview.stopLoading();
                     main_webview.loadUrl(Helper.occ_map);
                     break;
 
 
-                case 11:
+                case 12:
                     main_webview.stopLoading();
                     main_webview.loadUrl(Helper.base_contrib_map);
                     break;
-                case 12:
+                case 13:
                     main_webview.stopLoading();
                     main_webview.loadUrl(Helper.theme_contrib_map);
                     break;
-                case 13:
+                case 14:
                     main_webview.stopLoading();
                     main_webview.loadUrl(Helper.ads_warning_contrib_map);
                     break;
-                case 14:
+                case 15:
                     main_webview.stopLoading();
                     main_webview.loadUrl(Helper.building_contrib_map);
                     break;
-                case 15:
+                case 16:
                     main_webview.stopLoading();
                     main_webview.loadUrl(Helper.them_an_now_contrib_map);
                     break;
