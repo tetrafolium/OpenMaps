@@ -1,6 +1,6 @@
 # OpenMaps [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
-A simple client to display maps from Open Street Maps
+A simple client to display maps from [OpenStreetMap](https://www.openstreetmap.org).
 
 [Download the apk - v1.0.4](https://framadrive.org/s/xak7f4rjMkYdWRd)
 
