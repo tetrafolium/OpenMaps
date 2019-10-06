@@ -215,7 +215,7 @@ public class MainActivity extends AppCompatActivity {
                     hobbies.add(new PowerMenuItem(getString(R.string.ski_snow), false));
                     hobbies.add(new PowerMenuItem(getString(R.string.historic_places), false));
                     powerSubMenu = new PowerMenu.Builder(MainActivity.this)
-                            .setHeaderView(R.layout.layout_dialog_header_regional_maps)
+                            .setHeaderView(R.layout.layout_dialog_header_hobbies)
                             .setFooterView(R.layout.layout_dialog_footer)
                             .addItemList(hobbies)
                             .setAnimation(MenuAnimation.SHOW_UP_CENTER)
@@ -293,7 +293,7 @@ public class MainActivity extends AppCompatActivity {
                     contributions.add(new PowerMenuItem(getString(R.string.then_and_now), false));
 
                     powerSubMenu = new PowerMenu.Builder(MainActivity.this)
-                            .setHeaderView(R.layout.layout_dialog_header_life_skills)
+                            .setHeaderView(R.layout.layout_dialog_header_contributions)
                             .setFooterView(R.layout.layout_dialog_footer)
                             .addItemList(contributions)
                             .setAnimation(MenuAnimation.SHOW_UP_CENTER)
