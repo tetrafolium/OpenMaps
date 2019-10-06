@@ -15,10 +15,10 @@
     <string name="no_internet">Keine Internetverbindung</string>
     <string name="enable_data">Datenverbindung aktivieren</string>
     <string name="deplacements">Displacements</string>
-    <string name="close">Close</string>
-    <string name="trips">Trips</string>
+    <string name="close">Schließen</string>
+    <string name="trips">Reisen</string>
     <string name="life_skills">Life-skills</string>
-    <string name="regional_maps">Regional maps</string>
+    <string name="regional_maps">Regionale Karten</string>
     <string name="contributions">Contributions</string>
     <string name="itinerary">Itinerary</string>
     <string name="cycle_paths">Cycle paths</string>
