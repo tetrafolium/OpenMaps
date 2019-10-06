@@ -9,4 +9,4 @@ A simple client to display maps from Open Street Maps
 <img src="./img/img3.png" width="250">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <img src="./img/img4.png" width="250">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-Idea from (@Bristow_69@framapiaf.org)[https://framapiaf.org/@Bristow_69]
+Idea from [@Bristow_69@framapiaf.org](https://framapiaf.org/@Bristow_69)
