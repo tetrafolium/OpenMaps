@@ -404,7 +404,7 @@ public class MainActivity extends AppCompatActivity {
             if (permissionsNeeded.size() > 0) {
 
                 // Need Rationale
-                StringBuilder message = new StringBuilder(getString(R.string.access_needed) + permissionsNeeded.get(0));
+                StringBuilder message = new StringBuilder(getString(R.string.access_needed, permissionsNeeded.get(0)));
 
                 for (int i = 1; i < permissionsNeeded.size(); i++)
                     message.append(", ").append(permissionsNeeded.get(i));
