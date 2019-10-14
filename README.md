@@ -10,3 +10,5 @@ A simple client to display maps from [OpenStreetMap](https://www.openstreetmap.o
 <img src="./img/img4.png" width="250">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 Idea from [@Bristow_69@framapiaf.org](https://framapiaf.org/@Bristow_69)
+
+Translations are done with [Crowdin](https://crowdin.com/project/openmaps), if a language is missing, please open an issue.
