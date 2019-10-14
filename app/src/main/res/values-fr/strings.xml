@@ -9,10 +9,10 @@
     <string name="hobbies">Loisirs</string>
     <string name="permission_denied">La permission a été refusée !</string>
     <string name="all_granted">Toutes les permissions nécessaires sont accordées !</string>
-    <string name="loading_wait">Chargement en cours.. Veuillez patienter</string>
+    <string name="loading_wait">Chargement en cours, veuillez patienter</string>
     <string name="reload">Recharger</string>
     <string name="error">Erreur : %1$s</string>
-    <string name="no_internet">Pas de connexion internet</string>
+    <string name="no_internet">Aucune connexion Internet</string>
     <string name="enable_data">Activer les données mobiles</string>
     <string name="deplacements">Déplacements</string>
     <string name="close">Fermer</string>
@@ -36,7 +36,7 @@
     <string name="thematic_maps">Cartes thématiques</string>
     <string name="billboard_advertises">Panneaux publicitaires</string>
     <string name="interior_buildings">Intérieur des bâtiments</string>
-    <string name="then_and_now">Avant &amp; Maintenant</string>
+    <string name="then_and_now">Autrefois &amp; Aujourd\'hui</string>
     <string name="snow">Neige</string>
     <string name="ski_snow">Piste de ski</string>
     <string name="historic_places">Lieux historiques</string>
