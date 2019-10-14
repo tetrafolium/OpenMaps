@@ -1,10 +1,10 @@
-OpenMaps is an application that allows to display maps from OpenStreetMap and to quickly switch from a map to another one.
+OpenMaps est une application Android permettant d'afficher les cartes OpenStreetMap et de basculer facilement d'une carte à l'autre.
 
-Maps are grouped in categories:
-- Trips
-- Life-skills
-- Hobbies
-- Regional maps
+Les cartes sont regroupées en catégories :
+- Voyage
+- Vie pratique
+- Loisirs
+- Cartes régionales
 - Contributions
 
-Each of these categories contain several maps allowing to use the current location.
+Chacune de ces catégories contient plusieurs cartes vous permettant de vous repérer à partir de votre position courante.
