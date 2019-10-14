@@ -1,1 +1,1 @@
-Display maps with OpenStreetMap
+Affichez et basculez facilement entre les cartes OpenStreetMap
