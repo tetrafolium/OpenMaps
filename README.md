@@ -1,4 +1,4 @@
-# OpenMaps [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+# OpenMaps [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) [![Crowdin](https://badges.crowdin.net/openmaps/localized.svg)](https://crowdin.com/project/openmaps)
 
 A simple client to display maps from [OpenStreetMap](https://www.openstreetmap.org).
 
