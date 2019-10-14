@@ -1,0 +1,10 @@
+OpenMaps is an application that allows to display maps from OpenStreetMap and to quickly switch from a map to another one.
+
+Maps are grouped in categories:
+- Trips
+- Life-skills
+- Hobbies
+- Regional maps
+- Contributions
+
+Each of these categories contain several maps allowing to use the current location.
